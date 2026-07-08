@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--
+  =============================================================================
+  RED HAT ACADEMY - HOME PAGE
+  =============================================================================
+  HOW THIS FILE WORKS:
+  This page (and team.html, faq.html, contact.html) is intentionally mostly
+  EMPTY of real text. You'll see placeholder containers like:
+      <section id="heroSection"></section>
+  instead of hard-coded headings and paragraphs.
+
+  That's on purpose: js/script.js fetches data.json when the page loads,
+  and fills each of these empty containers with real content pulled from
+  that file. This means updating the homepage text/images later is a
+  matter of editing data.json - never this HTML file.
+
+  The <body> tag below has data-page="home" - script.js reads that
+  attribute to know "build the home page content", not the team/faq/contact
+  content. Each of the other 3 HTML files has a different data-page value.
+  =============================================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Makes the page render correctly (and at a readable size) on phones -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Red Hat Academy | Home</title>
+  <meta name="description" content="Red Hat Academy - open source skills, hands-on labs, and industry certifications for students, run by our campus core team.">
+
+  <!-- Our one shared stylesheet - see css/style.css for design tokens (colors, fonts, spacing) -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Uses the Red Hat Academy badge as the little tab icon in the browser -->
+  <link rel="icon" type="image/svg+xml" href="assets/redhat-logo.svg">
+</head>
+<body data-page="home">
+
+  <!--
+    NAVBAR PLACEHOLDER
+    -------------------
+    A real <nav> element so the page is valid HTML even before JavaScript
+    runs, but script.js's buildNavbar() function fills in the actual logo
+    images and links. This exact same empty <nav id="navbar"> appears on
+    all four pages, so the navbar is always built the same way everywhere.
+  -->
+  <nav id="navbar" class="navbar" aria-label="Main navigation"></nav>
+
+  <main>
+
+    <!--
+      HERO SECTION PLACEHOLDER
+      -------------------------
+      Filled in by buildHomePage() in script.js with: the eyebrow label,
+      big "Red Hat Academy" heading, subheading, two buttons, and the
+      hero illustration image - all sourced from data.json's "home" object.
+    -->
+    <section id="heroSection" class="hero" aria-label="Introduction"></section>
+
+    <!--
+      ABOUT + VALUE PROPS SECTION PLACEHOLDER
+      -----------------------------------------
+      Filled in with the "What is Red Hat Academy?" heading, the 3
+      explanatory paragraphs, and the 4-card benefits grid (Certifications,
+      Hands-On Labs, Global Community, Career Pathways).
+    -->
+    <section id="aboutSection" class="section" aria-label="About the program"></section>
+
+  </main>
+
+  <!--
+    FOOTER PLACEHOLDER
+    -------------------
+    Same idea as the navbar: one empty container, filled in identically
+    by buildFooter() on every page.
+  -->
+  <footer id="footer" class="site-footer"></footer>
+
+  <!--
+    Our shared JavaScript file. It's loaded LAST (right before </body>)
+    so that all the HTML elements above already exist in the page by the
+    time the script runs and tries to find/fill them. Loading scripts at
+    the end of <body> is a common, simple way to avoid "element not found"
+    errors without needing extra "wait until ready" code.
+  -->
+  <script src="js/script.js"></script>
+</body>
+</html>

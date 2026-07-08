@@ -1,0 +1,16 @@
+<!--
+  PLACEHOLDER UNIVERSITY LOGO
+  ---------------------------
+  This is a generic "shield" crest so the navbar looks complete out of the box.
+  Swap this file for your real university logo (keep the filename
+  "university-logo.svg", or update the path in data.json) and everything
+  will update automatically because the navbar loads this path from data.json.
+-->
+<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="University logo placeholder">
+  <path d="M60 6 L110 24 V58 C110 88 88 108 60 116 C32 108 10 88 10 58 V24 Z"
+        fill="#1A1A1A" stroke="#EE0000" stroke-width="4"/>
+  <path d="M60 16 L100 31 V58 C100 82 82 99 60 106 C38 99 20 82 20 58 V31 Z"
+        fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.5"/>
+  <text x="60" y="68" text-anchor="middle" font-family="Georgia, serif" font-size="34"
+        font-weight="700" fill="#FFFFFF">U</text>
+</svg>

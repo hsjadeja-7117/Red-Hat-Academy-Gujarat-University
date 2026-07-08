@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+  =============================================================================
+  RED HAT ACADEMY - CONTACT PAGE
+  =============================================================================
+  script.js's buildContactPage() fills in:
+    - #contactGrid: two cards (Campus Ambassador email, Faculty email)
+    - #communityCard: the "Join Our Community" WhatsApp QR code card
+  All text, emails, and the QR image path come from data.json's "contact"
+  object - update that file to change any of it.
+  =============================================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Red Hat Academy | Contact</title>
+  <meta name="description" content="Contact the Red Hat Academy Campus Ambassador or Faculty Coordinator, or join our WhatsApp community.">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="assets/redhat-logo.svg">
+</head>
+<body data-page="contact">
+
+  <nav id="navbar" class="navbar" aria-label="Main navigation"></nav>
+
+  <main>
+    <section class="section">
+      <div class="container">
+
+        <!-- Filled in with the page heading + intro paragraph -->
+        <div id="contactHeader" class="team-page-header"></div>
+
+        <!-- Filled in with the two email contact cards, side by side -->
+        <div id="contactGrid" class="contact-grid"></div>
+
+        <!-- Filled in with the "Join Our Community" WhatsApp QR card -->
+        <div id="communityCard" class="community-card"></div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="site-footer"></footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

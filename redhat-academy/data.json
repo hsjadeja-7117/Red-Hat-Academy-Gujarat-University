@@ -1,0 +1,201 @@
+{
+  "_readme": "This is the ONLY file most team members should ever need to edit. Every page (index.html, team.html, faq.html, contact.html) fetches this file with JavaScript and uses the values below to fill in text and images. Update a value here and it updates everywhere it is used - no HTML editing required. Keep the file valid JSON: every key/string is wrapped in double quotes, and there is no comma after the last item in a list or object.",
+
+  "site": {
+    "siteName": "Red Hat Academy",
+    "universityName": "Your University Name",
+    "universityLogo": "assets/university-logo.svg",
+    "universityLogoAlt": "Your University logo",
+    "redhatLogo": "assets/redhat-logo.svg",
+    "redhatLogoAlt": "Red Hat Academy logo"
+  },
+
+  "nav": [
+    { "label": "Home", "path": "/" },
+    { "label": "Leadership & Team", "path": "/team" },
+    { "label": "FAQ", "path": "/faq" },
+    { "label": "Contact", "path": "/contact" }
+  ],
+
+  "home": {
+    "heroEyebrow": "Your University x Red Hat Academy",
+    "heroHeading": "Red Hat Academy",
+    "heroSubheading": "Open source skills, straight from the source.",
+    "heroImage": "assets/hero-illustration.svg",
+    "heroImageAlt": "Illustration of a server rack and an open terminal window",
+    "heroPrimaryCtaText": "Meet the Team",
+    "heroPrimaryCtaLink": "/team",
+    "heroSecondaryCtaText": "Read the FAQ",
+    "heroSecondaryCtaLink": "/faq",
+
+    "aboutHeading": "What is Red Hat Academy?",
+    "aboutParagraphs": [
+      "Red Hat Academy is a no-cost program that brings enterprise open source technology into the classroom. Through a partnership between Red Hat and our university, students here get structured curriculum, hands-on labs, and industry-recognized certification exams in the same tools used by real IT teams around the world - Linux system administration, containers, cloud infrastructure, and automation.",
+      "Our chapter is run by a small student core team, supported by a faculty coordinator and guided by our Campus Ambassador, the student leader who first brought this program to our campus and formed the team you'll meet on the next page.",
+      "Whether you're aiming for a systems administration role, a DevOps career, or you just want to understand what actually runs the internet, Red Hat Academy gives you a structured, guided way to get there - with a community of students figuring it out alongside you."
+    ],
+
+    "valueProps": [
+      {
+        "title": "Real Certifications",
+        "description": "Work toward industry-recognized Red Hat certification exams, not just completion certificates."
+      },
+      {
+        "title": "Hands-On Labs",
+        "description": "Practice in real Linux environments instead of only reading slides - you learn by doing."
+      },
+      {
+        "title": "Global Community",
+        "description": "Join a worldwide network of Red Hat Academy students, alumni, and open source contributors."
+      },
+      {
+        "title": "Career Pathways",
+        "description": "Build a skill set that maps directly to system administrator, cloud, and DevOps job roles."
+      }
+    ]
+  },
+
+  "team": {
+    "pageHeading": "Leadership & Team",
+    "pageIntro": "Our Red Hat Academy chapter is organized as a small, focused leadership chain - from faculty oversight down to the core student team who keep things running day to day.",
+
+    "hod": {
+      "tierLabel": "Head of Department",
+      "name": "Dr. Full Name",
+      "role": "Head of Department, Computer Science & Engineering",
+      "photo": "assets/avatar-placeholder.svg",
+      "description": "Provides departmental oversight and institutional support for the Red Hat Academy program, ensuring it stays aligned with the department's broader academic and career-readiness goals."
+    },
+
+    "faculty": {
+      "tierLabel": "Supporting Faculty",
+      "name": "Prof. Full Name",
+      "role": "Faculty Coordinator, Red Hat Academy",
+      "photo": "assets/avatar-placeholder.svg",
+      "description": "Acts as the faculty point of contact for Red Hat Academy, supporting the student core team with mentorship, scheduling, and coordination with the department."
+    },
+
+    "ambassador": {
+      "tierLabel": "Campus Ambassador",
+      "name": "Full Name",
+      "role": "Red Hat Academy Campus Ambassador",
+      "photo": "assets/avatar-placeholder.svg",
+      "description": "Brought Red Hat Academy to our campus and formed the student core team. Serves as the main link between our chapter, the faculty coordinator, and the wider Red Hat Academy community."
+    },
+
+    "coreTeamLabel": "Core Team Members",
+    "coreTeam": [
+      {
+        "name": "Student Name 1",
+        "role": "Core Team Member - Events",
+        "photo": "assets/avatar-placeholder.svg",
+        "description": "Plans and runs chapter workshops, study sessions, and community meetups."
+      },
+      {
+        "name": "Student Name 2",
+        "role": "Core Team Member - Content",
+        "photo": "assets/avatar-placeholder.svg",
+        "description": "Maintains study resources and helps members track progress through the curriculum."
+      },
+      {
+        "name": "Student Name 3",
+        "role": "Core Team Member - Outreach",
+        "photo": "assets/avatar-placeholder.svg",
+        "description": "Handles social media, announcements, and outreach to new students."
+      },
+      {
+        "name": "Student Name 4",
+        "role": "Core Team Member - Labs",
+        "photo": "assets/avatar-placeholder.svg",
+        "description": "Sets up and troubleshoots the hands-on lab environments used in sessions."
+      },
+      {
+        "name": "Student Name 5",
+        "role": "Core Team Member - Design",
+        "photo": "assets/avatar-placeholder.svg",
+        "description": "Looks after this website and the chapter's visual materials."
+      },
+      {
+        "name": "Your Name",
+        "role": "Core Team Member",
+        "photo": "assets/avatar-placeholder.svg",
+        "description": "Replace this card with your own name, role, and a short description."
+      }
+    ]
+  },
+
+  "faq": {
+    "pageHeading": "Frequently Asked Questions",
+    "pageIntro": "New to Red Hat or to the Academy? Start here. Click a question to expand the answer.",
+    "items": [
+      {
+        "question": "What is Red Hat?",
+        "answer": "Red Hat is a global enterprise software company that builds open source solutions for businesses, most famously Red Hat Enterprise Linux (RHEL). Instead of selling proprietary software licenses, Red Hat's business model is built around open source collaboration, subscriptions, and support - making community-built software reliable enough for banks, hospitals, and governments to run on."
+      },
+      {
+        "question": "What is the history of Red Hat?",
+        "answer": "Red Hat was founded in 1993 and grew alongside the broader Linux and open source movement of the 1990s. Over the following decades it became the leading commercial Linux distribution company, eventually expanding into cloud, container, and automation software, and was acquired by IBM in 2019 while continuing to operate with its own open source-first culture and leadership."
+      },
+      {
+        "question": "What is the Red Hat Academy?",
+        "answer": "Red Hat Academy is Red Hat's education program for universities and colleges. It gives participating institutions - like ours - free access to official Red Hat curriculum, virtual lab environments, and discounted or included certification exam vouchers, so students can learn the same tools used in real enterprise IT environments."
+      },
+      {
+        "question": "What benefits do students get from joining?",
+        "answer": "Members get access to guided curriculum, hands-on lab practice in real Linux environments, a path toward industry-recognized certification exams, and membership in a global community of Red Hat Academy students and open source contributors - plus the peer support of our own campus core team."
+      },
+      {
+        "question": "Do I need prior Linux or coding experience to join?",
+        "answer": "No. The curriculum is designed to start from the fundamentals, so beginners are welcome. Some basic comfort with using a computer is helpful, but the program is built to teach Linux and systems concepts from the ground up."
+      },
+      {
+        "question": "What topics does the curriculum cover?",
+        "answer": "Typical Red Hat Academy tracks cover Linux system administration fundamentals, command-line usage, user and file permission management, containers, and an introduction to automation and cloud infrastructure concepts - giving students a foundation that maps directly onto real system administrator and DevOps job tasks."
+      },
+      {
+        "question": "How do I get access to the learning platform and labs?",
+        "answer": "Once you join our chapter, our Campus Ambassador and faculty coordinator will help enroll you in the official Red Hat Academy learning platform, where your course content, lab environments, and progress tracking all live under your own student account."
+      },
+      {
+        "question": "Are the certifications recognized by employers?",
+        "answer": "Yes. Red Hat certifications are recognized across the IT industry, and Red Hat Academy is specifically designed to prepare students for these official certification exams, not just an internal completion certificate."
+      },
+      {
+        "question": "What career paths can this program prepare me for?",
+        "answer": "Skills from the program map well onto roles such as Linux system administrator, DevOps engineer, cloud infrastructure engineer, and site reliability engineer - all roles where employers commonly look for exactly the kind of hands-on Linux and automation experience this curriculum builds."
+      },
+      {
+        "question": "How can I get involved beyond just taking the courses?",
+        "answer": "Join our WhatsApp community (see the Contact page) to hear about workshops, study groups, and volunteer opportunities on the core team, such as helping with events, content, outreach, or lab support."
+      }
+    ]
+  },
+
+  "contact": {
+    "pageHeading": "Contact Us",
+    "pageIntro": "Have a question about joining, curriculum, or events? Reach out to either of us below, or join the community for the fastest updates.",
+    "ambassador": {
+      "label": "Campus Ambassador",
+      "name": "Full Name",
+      "email": "ambassador@example.edu"
+    },
+    "faculty": {
+      "label": "Supporting Faculty",
+      "name": "Prof. Full Name",
+      "email": "faculty@example.edu"
+    },
+    "community": {
+      "heading": "Join Our Community",
+      "description": "Scan the code or tap the button to join our WhatsApp community for announcements, study groups, and event updates.",
+      "qrImage": "assets/whatsapp-qr-placeholder.svg",
+      "qrImageAlt": "QR code placeholder to join the WhatsApp community",
+      "ctaText": "Join on WhatsApp",
+      "ctaLink": "https://chat.whatsapp.com/your-invite-code-here"
+    }
+  },
+
+  "footer": {
+    "text": "Red Hat Academy Student Chapter",
+    "subtext": "A student-run initiative supported by our Campus Ambassador and faculty coordinator."
+  }
+}
