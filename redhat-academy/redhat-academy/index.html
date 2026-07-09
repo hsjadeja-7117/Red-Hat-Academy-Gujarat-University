@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!--
+  =============================================================================
+  RED HAT ACADEMY - HOME PAGE
+  =============================================================================
+  Unlike an earlier version of this site, this page's text is now written
+  directly here as normal HTML - not fetched from a JSON file. If you want
+  to change the heading, the "About" paragraphs, or the 4 benefit cards,
+  just edit the text below directly (use Ctrl+F / Cmd+F to find it fast).
+
+  The only file that still loads content from JSON is team.html, because
+  the team roster changes every year and that's worth keeping in one
+  editable data file (see data.json).
+  =============================================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Red Hat Academy | Home</title>
+  <meta name="description" content="Red Hat Academy - open source skills, hands-on labs, and industry certifications for students, run by our campus core team.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <!-- This same navbar block is copied at the top of all four pages. -->
+  <nav class="navbar" aria-label="Main navigation">
+    <div class="container navbar__inner">
+
+      <!-- Left: university logo. See css/style.css section 5 ("MEDIA
+           FRAME") for how this box shows placeholder text until you
+           point the <img> below at a real logo file. -->
+      <a href="/" aria-label="Red Hat Academy home">
+        <div class="media-frame media-frame--nav-logo">
+          <span class="media-frame__placeholder">University Logo</span>
+          <img class="media-frame__img" src="assets/university-logo.jpg"
+               alt="Your University logo" onerror="this.style.display='none'">
+        </div>
+      </a>
+
+      <!-- Center: page links -->
+      <ul class="navbar__links" id="navbarLinks">
+        <li><a class="navbar__link" href="/" data-path="/">Home</a></li>
+        <li><a class="navbar__link" href="/team" data-path="/team">Leadership &amp; Team</a></li>
+        <li><a class="navbar__link" href="/faq" data-path="/faq">FAQ</a></li>
+        <li><a class="navbar__link" href="/contact" data-path="/contact">Contact</a></li>
+      </ul>
+
+      <!-- Hamburger button, shown only on small screens (see style.css) -->
+      <button class="navbar__hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <!-- Right: Red Hat Academy logo -->
+      <a href="https://www.redhat.com/en/services/training/red-hat-academy" target="_blank" rel="noopener">
+        <div class="media-frame media-frame--nav-logo">
+          <span class="media-frame__placeholder">Red Hat Academy Logo</span>
+          <img class="media-frame__img" src="assets/redhat-logo.jpg"
+               alt="Red Hat Academy logo" onerror="this.style.display='none'">
+        </div>
+      </a>
+
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ===================== HERO SECTION ===================== -->
+    <section class="hero">
+      <div class="container hero__inner">
+        <div class="hero__text">
+          <p class="eyebrow">Your University x Red Hat Academy</p>
+          <h1 class="hero__heading"><span class="accent">Red Hat</span> Academy</h1>
+          <p class="hero__subheading">Open source skills, straight from the source.</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="/team">Meet the Team</a>
+            <a class="btn btn--secondary" href="/faq">Read the FAQ</a>
+          </div>
+        </div>
+
+        <!-- Hero image: a medium/large image representing the academy or
+             cloud computing, as requested in the brief. Point the <img>
+             at a real photo/illustration whenever you have one. -->
+        <div class="hero__image-wrap">
+          <div class="media-frame media-frame--hero">
+            <span class="media-frame__placeholder">
+              Hero image will go here<br>(e.g. a photo representing the<br>academy or cloud computing)
+            </span>
+            <img class="media-frame__img" src="assets/hero-image.jpg"
+                 alt="Photo representing the Red Hat Academy" onerror="this.style.display='none'">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT SECTION ===================== -->
+    <section class="section">
+      <div class="container">
+        <p class="eyebrow">about the program</p>
+        <h2 class="section-heading">What is Red Hat Academy?</h2>
+
+        <p class="about__paragraph">
+          Red Hat Academy is a no-cost program that brings enterprise open source technology
+          into the classroom. Through a partnership between Red Hat and our university,
+          students here get structured curriculum, hands-on labs, and industry-recognized
+          certification exams in the same tools used by real IT teams around the world -
+          Linux system administration, containers, cloud infrastructure, and automation.
+        </p>
+        <p class="about__paragraph">
+          Our chapter is run by a small student core team, supported by a faculty coordinator
+          and guided by our Campus Ambassador, the student leader who first brought this
+          program to our campus and formed the team you'll meet on the next page.
+        </p>
+        <p class="about__paragraph">
+          Whether you're aiming for a systems administration role, a DevOps career, or you
+          just want to understand what actually runs the internet, Red Hat Academy gives you
+          a structured, guided way to get there - with a community of students figuring it
+          out alongside you.
+        </p>
+
+        <!-- The 4-card grid of program benefits -->
+        <div class="value-grid">
+          <div class="value-card">
+            <h3 class="value-card__title">Real Certifications</h3>
+            <p class="value-card__description">Work toward industry-recognized Red Hat certification exams, not just completion certificates.</p>
+          </div>
+          <div class="value-card">
+            <h3 class="value-card__title">Hands-On Labs</h3>
+            <p class="value-card__description">Practice in real Linux environments instead of only reading slides - you learn by doing.</p>
+          </div>
+          <div class="value-card">
+            <h3 class="value-card__title">Global Community</h3>
+            <p class="value-card__description">Join a worldwide network of Red Hat Academy students, alumni, and open source contributors.</p>
+          </div>
+          <div class="value-card">
+            <h3 class="value-card__title">Career Pathways</h3>
+            <p class="value-card__description">Build a skill set that maps directly to system administrator, cloud, and DevOps job roles.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <!-- This same footer block is copied at the bottom of all four pages. -->
+  <footer class="site-footer">
+    <div class="container">
+      <p><strong>Red Hat Academy Student Chapter</strong></p>
+      <p>A student-run initiative supported by our Campus Ambassador and faculty coordinator.</p>
+      <p>&copy; <span id="footerYear"></span> Your University Name</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

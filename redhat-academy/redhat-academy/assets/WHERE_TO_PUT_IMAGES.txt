@@ -1,0 +1,40 @@
+PUT YOUR IMAGES HERE
+=====================
+This project no longer ships any placeholder image files. Instead, every
+page shows a dashed-border box with instructions (like "Photo will go
+here") until you add a real image at the expected path. See the
+"media-frame" component explained in css/style.css (section 5) and in
+README.md for exactly how that works.
+
+The site is already looking for these exact filenames. Add a file with
+one of these names (matching the file extension too - see note below)
+and it will appear automatically, no HTML/CSS/JS changes needed:
+
+  assets/university-logo.jpg   -> navbar, left side
+  assets/redhat-logo.jpg       -> navbar, right side
+  assets/hero-image.jpg        -> home page hero image
+  assets/qr-code.jpg           -> contact page WhatsApp QR code
+
+  assets/team/hod.jpg          -> Head of Department photo
+  assets/team/faculty.jpg      -> Supporting Faculty photo
+  assets/team/ambassador.jpg   -> Campus Ambassador photo
+  assets/team/member1.jpg      -> Core team member 1 photo
+  assets/team/member2.jpg      -> Core team member 2 photo
+  assets/team/member3.jpg      -> Core team member 3 photo
+  assets/team/member4.jpg      -> Core team member 4 photo
+  assets/team/member5.jpg      -> Core team member 5 photo
+  assets/team/member6.jpg      -> Core team member 6 photo (that's you!)
+
+IMPORTANT - if your image isn't a .jpg:
+If your file is a .png, .jpeg, or anything else, either:
+  (a) rename the file to match the .jpg name above, or
+  (b) update the matching "src" attribute (for logos/hero/QR - search for
+      it in index.html / contact.html) or "photo" field (for team members
+      - edit data.json) to match your file's real name and extension.
+
+IMPORTANT - filenames are case-sensitive on the live site:
+Your computer might not care whether a file is named "Photo.JPG" or
+"photo.jpg", but the live Vercel server does. If an image looks correct
+locally but still won't load once deployed, double-check that the
+filename and extension in your code EXACTLY match the file you uploaded,
+including uppercase/lowercase letters.

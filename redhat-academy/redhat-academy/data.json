@@ -1,0 +1,63 @@
+{
+  "_readme": "This file ONLY holds the Leadership & Team page cards now - the photo, name, role, and description for the HOD, Faculty, Campus Ambassador, and each Core Team member. Everything else on the site (home page text, FAQ questions/answers, contact emails) is written directly inside its own HTML file, so open index.html / faq.html / contact.html to edit that content. Keeping just the team roster here means adding or swapping out a team member each year is a single, simple edit, without needing to touch any HTML.",
+
+  "hod": {
+    "name": "Dr. Full Name",
+    "role": "Head of Department, Computer Science & Engineering",
+    "photo": "assets/team/hod.jpg",
+    "description": "Provides departmental oversight and institutional support for the Red Hat Academy program, ensuring it stays aligned with the department's broader academic and career-readiness goals."
+  },
+
+  "faculty": {
+    "name": "Prof. Full Name",
+    "role": "Faculty Coordinator, Red Hat Academy",
+    "photo": "assets/team/faculty.jpg",
+    "description": "Acts as the faculty point of contact for Red Hat Academy, supporting the student core team with mentorship, scheduling, and coordination with the department."
+  },
+
+  "ambassador": {
+    "name": "Full Name",
+    "role": "Red Hat Academy Campus Ambassador",
+    "photo": "assets/team/ambassador.jpg",
+    "description": "Brought Red Hat Academy to our campus and formed the student core team. Serves as the main link between our chapter, the faculty coordinator, and the wider Red Hat Academy community."
+  },
+
+  "coreTeam": [
+    {
+      "name": "Student Name 1",
+      "role": "Core Team Member - Events",
+      "photo": "assets/team/member1.jpg",
+      "description": "Plans and runs chapter workshops, study sessions, and community meetups."
+    },
+    {
+      "name": "Student Name 2",
+      "role": "Core Team Member - Content",
+      "photo": "assets/team/member2.jpg",
+      "description": "Maintains study resources and helps members track progress through the curriculum."
+    },
+    {
+      "name": "Student Name 3",
+      "role": "Core Team Member - Outreach",
+      "photo": "assets/team/member3.jpg",
+      "description": "Handles social media, announcements, and outreach to new students."
+    },
+    {
+      "name": "Student Name 4",
+      "role": "Core Team Member - Labs",
+      "photo": "assets/team/member4.jpg",
+      "description": "Sets up and troubleshoots the hands-on lab environments used in sessions."
+    },
+    {
+      "name": "Student Name 5",
+      "role": "Core Team Member - Design",
+      "photo": "assets/team/member5.jpg",
+      "description": "Looks after this website and the chapter's visual materials."
+    },
+    {
+      "name": "Your Name",
+      "role": "Core Team Member",
+      "photo": "assets/team/member6.jpg",
+      "description": "Replace this card with your own name, role, and a short description."
+    }
+  ]
+}
