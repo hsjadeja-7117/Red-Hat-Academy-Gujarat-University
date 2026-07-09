@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--
+  =============================================================================
+  RED HAT ACADEMY - CONTACT PAGE
+  =============================================================================
+  Nothing on this page is loaded from data.json - the two email cards and
+  the "Join Our Community" text are written directly below. To update an
+  email address or the WhatsApp link, edit the text/attributes directly.
+  =============================================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Red Hat Academy | Contact</title>
+  <meta name="description" content="Contact the Red Hat Academy Campus Ambassador or Faculty Coordinator, or join our WhatsApp community.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <nav class="navbar" aria-label="Main navigation">
+    <div class="container navbar__inner">
+      <a href="/" aria-label="Red Hat Academy home">
+        <div class="media-frame media-frame--nav-logo">
+          <span class="media-frame__placeholder">University Logo</span>
+          <img class="media-frame__img" src="assets/university-logo.jpg"
+               alt="Your University logo" onerror="this.style.display='none'">
+        </div>
+      </a>
+
+      <ul class="navbar__links" id="navbarLinks">
+        <li><a class="navbar__link" href="/" data-path="/">Home</a></li>
+        <li><a class="navbar__link" href="/team" data-path="/team">Leadership &amp; Team</a></li>
+        <li><a class="navbar__link" href="/faq" data-path="/faq">FAQ</a></li>
+        <li><a class="navbar__link" href="/contact" data-path="/contact">Contact</a></li>
+      </ul>
+
+      <button class="navbar__hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <a href="https://www.redhat.com/en/services/training/red-hat-academy" target="_blank" rel="noopener">
+        <div class="media-frame media-frame--nav-logo">
+          <span class="media-frame__placeholder">Red Hat Academy Logo</span>
+          <img class="media-frame__img" src="assets/redhat-logo.jpg"
+               alt="Red Hat Academy logo" onerror="this.style.display='none'">
+        </div>
+      </a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="section">
+      <div class="container">
+
+        <div class="team-page-header">
+          <p class="eyebrow">get in touch</p>
+          <h1 class="section-heading">Contact Us</h1>
+          <p class="section-intro" style="margin-left:auto;margin-right:auto;">
+            Have a question about joining, curriculum, or events? Reach out to either of us
+            below, or join the community for the fastest updates.
+          </p>
+        </div>
+
+        <!-- Two email cards, side by side on desktop, stacked on mobile -->
+        <div class="contact-grid">
+
+          <div class="contact-card">
+            <p class="contact-card__label">Campus Ambassador</p>
+            <h3 class="contact-card__name">Full Name</h3>
+            <a class="contact-card__email" href="mailto:ambassador@example.edu">ambassador@example.edu</a>
+          </div>
+
+          <div class="contact-card">
+            <p class="contact-card__label">Supporting Faculty</p>
+            <h3 class="contact-card__name">Prof. Full Name</h3>
+            <a class="contact-card__email" href="mailto:faculty@example.edu">faculty@example.edu</a>
+          </div>
+
+        </div>
+
+        <!-- "Join Our Community" card: text on one side, QR code on the other.
+             The QR media-frame shows placeholder text until you add a real,
+             generated QR code image pointing at your WhatsApp invite link. -->
+        <div class="community-card">
+          <div>
+            <h2 class="community-card__heading">Join Our Community</h2>
+            <p class="community-card__description">
+              Scan the code or tap the button to join our WhatsApp community for
+              announcements, study groups, and event updates.
+            </p>
+            <a class="btn btn--primary" href="https://chat.whatsapp.com/your-invite-code-here" target="_blank" rel="noopener">
+              Join on WhatsApp
+            </a>
+          </div>
+          <div class="community-card__qr-wrap">
+            <div class="media-frame media-frame--qr">
+              <span class="media-frame__placeholder">QR code will go here</span>
+              <img class="media-frame__img" src="assets/qr-code.jpg"
+                   alt="QR code to join the WhatsApp community" onerror="this.style.display='none'">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <p><strong>Red Hat Academy Student Chapter</strong></p>
+      <p>A student-run initiative supported by our Campus Ambassador and faculty coordinator.</p>
+      <p>&copy; <span id="footerYear"></span> Your University Name</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
