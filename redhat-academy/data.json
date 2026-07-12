@@ -2,9 +2,9 @@
   "_readme": "This file ONLY holds the Leadership & Team page cards now - the photo, name, role, and description for the HOD, Faculty, Campus Ambassador, and each Core Team member. Everything else on the site (home page text, FAQ questions/answers, contact emails) is written directly inside its own HTML file, so open index.html / faq.html / contact.html to edit that content. Keeping just the team roster here means adding or swapping out a team member each year is a single, simple edit, without needing to touch any HTML.",
 
   "hod": {
-    "name": "Dr. Full Name",
+    "name": "Dr. Paavan Pandit",
     "role": "Head of Department, Computer Science & Engineering",
-    "photo": "assets/team/hod.jpg",
+    "photo": "assets/team/hod.png",
     "description": "Provides departmental oversight and institutional support for the Red Hat Academy program, ensuring it stays aligned with the department's broader academic and career-readiness goals."
   },
 
