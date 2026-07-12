@@ -16,7 +16,7 @@
   },
 
   "ambassador": {
-    "name": "Full Name",
+    "name": "Dhairya Panchal",
     "role": "Red Hat Academy Campus Ambassador",
     "photo": "assets/team/ambassador.png",
     "description": "Brought Red Hat Academy to our campus and formed the student core team. Serves as the main link between our chapter, the faculty coordinator, and the wider Red Hat Academy community."
@@ -24,10 +24,10 @@
 
   "coreTeam": [
     {
-      "name": "Student Name 1",
-      "role": "Core Team Member - Events",
-      "photo": "assets/team/member1.jpg",
-      "description": "Plans and runs chapter workshops, study sessions, and community meetups."
+      "name": "Harshvardhansinh S Jadeja",
+      "role": "Core Team Member - Website Management",
+      "photo": "assets/team/member1.jpeg",
+      "description": "Builds & Maintains the official Program Website."
     },
     {
       "name": "Student Name 2",
