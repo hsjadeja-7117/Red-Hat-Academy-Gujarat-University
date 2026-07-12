@@ -232,15 +232,6 @@ button {
   flex-shrink: 0;
 }
 
-.media-frame__placeholder {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  line-height: 1.4;
-  color: var(--color-gray-600);
-  text-align: center;
-  padding: 0.5em;
-}
-
 .media-frame__img {
   position: absolute;
   inset: 0;             /* shorthand for top/right/bottom/left: 0 */
