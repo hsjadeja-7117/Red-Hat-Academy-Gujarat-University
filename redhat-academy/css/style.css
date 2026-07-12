@@ -623,7 +623,7 @@ button {
 }
 
 .team-card__photo {
-  border: 3px solid var(--color-charcoal);
+  border: 0px solid var(--color-charcoal);
   transition: border-color var(--transition-medium);
 }
 
