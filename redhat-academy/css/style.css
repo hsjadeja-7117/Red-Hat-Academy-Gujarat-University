@@ -227,7 +227,6 @@ button {
   align-items: center;
   justify-content: center;
   background-color: var(--color-gray-100);
-  border: 2px dashed var(--color-gray-300);
   overflow: hidden;     /* clips the image to the frame's rounded corners */
   flex-shrink: 0;
 }
