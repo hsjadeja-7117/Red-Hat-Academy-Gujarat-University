@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<!--
+  =============================================================================
+  RED HAT ACADEMY - INAUGURATION EVENT / PHOTO GALLERY PAGE
+  =============================================================================
+  HOW THIS FILE FITS INTO YOUR EXISTING PROJECT:
+  This page reuses your existing shared files (so the navbar, footer, fonts,
+  and colors match the rest of the site exactly):
+      <link rel="stylesheet" href="css/style.css">
+      <script src="js/script.js"></script>
+  Both of those already exist in your project - don't touch them.
+
+  Everything specific to THIS page (the photo grid + the click-to-enlarge
+  "lightbox" viewer) is self-contained right here, in the <style> block in
+  <head> and the <script> block near the bottom of <body>. You can drop
+  this single file into your project folder and it works immediately.
+
+  ONE SMALL STEP STILL NEEDED ON YOUR END: this page reads its heading,
+  description, and photo list from data.json - specifically a new "event"
+  section that doesn't exist in your data.json yet. See the chat message
+  for the exact snippet to paste in, and where.
+
+  Until you do that (or until data.json fails to load for any reason),
+  this page still displays nicely using safe built-in fallback text/photos,
+  so it never looks broken.
+  =============================================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Red Hat Academy | Inauguration</title>
+  <meta name="description" content="Photos from the Red Hat Academy chapter's inauguration ceremony.">
+
+  <!-- Your existing shared stylesheet - gives this page the same fonts,
+       colors, navbar, and footer as the rest of the site. -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!--
+    PAGE-SPECIFIC STYLES
+    ----------------------
+    Everything below is ONLY used by this page (the photo grid and the
+    lightbox pop-up viewer). Keeping it here instead of in css/style.css
+    means you can copy this one file anywhere without also having to
+    remember to copy extra CSS into your shared stylesheet.
+  -->
+  <style>
+    /* --- Event header (eyebrow / heading / description / date) --- */
+    .event-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto var(--space-xl);
+    }
+
+    .event-header__date {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-gray-600);
+      border: 1px solid var(--color-gray-300);
+      border-radius: 999px;
+      padding: 0.3em 0.9em;
+      margin-top: var(--space-xs);
+    }
+
+    /*
+      --- Gallery grid ---
+      "auto-fit" + "minmax" automatically fits as many square photo tiles
+      per row as comfortably fit at 220px+ wide, and wraps to fewer
+      columns on smaller screens - no separate mobile grid rule needed.
+    */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-sm);
+    }
+
+    /*
+      Each tile reuses the same "show placeholder text until a real image
+      loads" trick as the rest of the site (see css/style.css section 5,
+      "MEDIA FRAME") but adds a hover zoom + caption overlay, and a
+      "fade/rise into view while scrolling" entrance animation, so the
+      gallery feels lively instead of just a flat photo dump.
+    */
+    .gallery-item {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border-radius: var(--radius-md);
+      background-color: var(--color-gray-100);
+      border: 2px dashed var(--color-gray-300);
+      cursor: pointer;
+
+      /* Starting state for the scroll-reveal animation - invisible and
+         shifted down slightly. JS adds ".is-visible" (see script below)
+         once the tile scrolls into view, which animates it to its
+         natural position. */
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .gallery-item.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .gallery-item__placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1em;
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-gray-600);
+    }
+
+    .gallery-item__img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover .gallery-item__img {
+      transform: scale(1.08); /* subtle zoom-in on hover invites a click */
+    }
+
+    /* Caption overlay: hidden by default, slides up on hover */
+    .gallery-item__caption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 0.6em 0.8em;
+      font-size: var(--text-xs);
+      font-weight: 700;
+      color: var(--color-white);
+      background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+      transform: translateY(100%);
+      transition: transform var(--transition-fast);
+    }
+
+    .gallery-item:hover .gallery-item__caption {
+      transform: translateY(0);
+    }
+
+    /*
+      --- Lightbox (the full-screen "click a photo to enlarge it" view) ---
+      Sits fixed over the whole page. Starts hidden; JS adds ".is-open"
+      when a photo is clicked.
+    */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(0, 0, 0, 0.92);
+      opacity: 0;
+      pointer-events: none; /* invisible AND unclickable while closed */
+      transition: opacity var(--transition-medium);
+    }
+
+    .lightbox.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox__figure {
+      max-width: 90vw;
+      max-height: 82vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+      transform: scale(0.96);
+      transition: transform var(--transition-medium);
+    }
+
+    .lightbox.is-open .lightbox__figure {
+      transform: scale(1);
+    }
+
+    .lightbox__img {
+      max-width: 90vw;
+      max-height: 68vh;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .lightbox__caption {
+      color: var(--color-white);
+      text-align: center;
+      font-size: var(--text-base);
+    }
+
+    .lightbox__counter {
+      color: var(--color-gray-300);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+    }
+
+    /* Close button, top-right corner */
+    .lightbox__close {
+      position: absolute;
+      top: var(--space-md);
+      right: var(--space-md);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--color-white);
+      font-size: 1.5rem;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color var(--transition-fast);
+    }
+
+    .lightbox__close:hover {
+      background-color: var(--color-red);
+    }
+
+    /* Prev/next arrow buttons, vertically centered on each side */
+    .lightbox__nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--color-white);
+      font-size: 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color var(--transition-fast);
+    }
+
+    .lightbox__nav:hover {
+      background-color: var(--color-red);
+    }
+
+    .lightbox__nav--prev { left: var(--space-md); }
+    .lightbox__nav--next { right: var(--space-md); }
+
+    /* On phones, shrink the side arrows so they don't crowd the photo */
+    @media (max-width: 640px) {
+      .lightbox__nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <!-- Same navbar as your other pages, with one extra link added
+       ("Event") so this page is reachable from the menu. See the chat
+       message for the one-line snippet to add this same link to your
+       other 4 pages, if you'd like it to show up everywhere. -->
+  <nav class="navbar" aria-label="Main navigation">
+    <div class="container navbar__inner">
+      <a href="/" aria-label="Red Hat Academy home">
+        <div class="media-frame media-frame--nav-logo">
+          <span class="media-frame__placeholder">University Logo</span>
+          <img class="media-frame__img" src="assets/university-logo.jpg"
+               alt="Your University logo"
+               onload="this.previousElementSibling.style.display='none'"
+               onerror="this.style.display='none'">
+        </div>
+      </a>
+
+      <ul class="navbar__links" id="navbarLinks">
+        <li><a class="navbar__link" href="/" data-path="/">Home</a></li>
+        <li><a class="navbar__link" href="/team" data-path="/team">Leadership &amp; Team</a></li>
+        <li><a class="navbar__link" href="/faq" data-path="/faq">FAQ</a></li>
+        <li><a class="navbar__link" href="/contact" data-path="/contact">Contact</a></li>
+        <li><a class="navbar__link" href="/event" data-path="/event">Event</a></li>
+      </ul>
+
+      <button class="navbar__hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <a href="https://www.redhat.com/en/services/training/red-hat-academy" target="_blank" rel="noopener">
+        <div class="media-frame media-frame--nav-logo">
+          <span class="media-frame__placeholder">Red Hat Academy Logo</span>
+          <img class="media-frame__img" src="assets/redhat-logo.jpg"
+               alt="Red Hat Academy logo"
+               onload="this.previousElementSibling.style.display='none'"
+               onerror="this.style.display='none'">
+        </div>
+      </a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="section">
+      <div class="container">
+
+        <!-- Filled in by JS below from data.json's "event" section -->
+        <div class="event-header" id="eventHeader"></div>
+
+        <!-- The photo grid. JS builds one .gallery-item tile per photo,
+             using the same media-frame placeholder pattern as the rest
+             of the site so missing photos show clear instructions
+             instead of a broken image icon. -->
+        <div class="gallery-grid" id="galleryGrid"></div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <p><strong>Red Hat Academy Student Chapter</strong></p>
+      <p>A student-run initiative supported by our Campus Ambassador and faculty coordinator.</p>
+      <p>&copy; <span id="footerYear"></span> Your University Name</p>
+    </div>
+  </footer>
+
+  <!-- ===================== LIGHTBOX (full-screen photo viewer) ===================== -->
+  <!-- Stays in the HTML at all times, just invisible (opacity:0) until
+       JS adds the "is-open" class - see the CSS .lightbox rules above. -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Close photo viewer">&times;</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Previous photo">&#8249;</button>
+    <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Next photo">&#8250;</button>
+    <figure class="lightbox__figure">
+      <img class="lightbox__img" id="lightboxImg" src="" alt="">
+      <figcaption class="lightbox__caption" id="lightboxCaption"></figcaption>
+      <p class="lightbox__counter" id="lightboxCounter"></p>
+    </figure>
+  </div>
+
+  <!-- Your existing shared script - handles the hamburger menu, active
+       nav-link highlighting, and footer year on this page too. -->
+  <script src="js/script.js"></script>
+
+  <!--
+    PAGE-SPECIFIC SCRIPT
+    ----------------------
+    Everything below is ONLY used by this page: loading the event's
+    text/photos from data.json, building the gallery grid, the
+    scroll-reveal animation, and the click-to-enlarge lightbox.
+  -->
+  <script>
+    // Safe fallback content, used only if data.json can't be reached or
+    // doesn't have an "event" section yet - so this page never looks
+    // broken, even before you've added the JSON snippet from chat.
+    const FALLBACK_EVENT = {
+      eyebrow: 'our story begins',
+      heading: 'Inauguration Ceremony',
+      date: 'Add your event date here',
+      description: 'Photos from the day our Red Hat Academy chapter was officially inaugurated on campus.',
+      photos: [
+        { src: 'assets/event/photo-01.jpg', caption: 'Lighting the ceremonial lamp' },
+        { src: 'assets/event/photo-02.jpg', caption: 'Chief guest address' },
+        { src: 'assets/event/photo-03.jpg', caption: "Campus Ambassador's welcome speech" },
+        { src: 'assets/event/photo-04.jpg', caption: 'Faculty coordinator felicitation' },
+        { src: 'assets/event/photo-05.jpg', caption: 'Ribbon cutting ceremony' },
+        { src: 'assets/event/photo-06.jpg', caption: 'Certificate distribution' },
+        { src: 'assets/event/photo-07.jpg', caption: 'Group photo with the core team' },
+        { src: 'assets/event/photo-08.jpg', caption: 'Audience during the ceremony' },
+        { src: 'assets/event/photo-09.jpg', caption: 'Cake cutting celebration' }
+      ]
+    };
+
+    // Keeps track of which photos are currently shown and which one is
+    // open in the lightbox, so the prev/next buttons know what to do.
+    let currentPhotos = [];
+    let currentIndex = 0;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadEventData();
+      setupLightboxControls();
+    });
+
+    /**
+     * Fetches data.json and reads its "event" section. Falls back to
+     * FALLBACK_EVENT above if data.json is missing, unreachable, or
+     * doesn't have that section yet.
+     */
+    async function loadEventData() {
+      let eventData = FALLBACK_EVENT;
+
+      try {
+        const response = await fetch('data.json');
+        if (response.ok) {
+          const data = await response.json();
+          if (data.event) {
+            eventData = data.event;
+          }
+        }
+      } catch (error) {
+        console.error('Could not load data.json, showing fallback event content:', error);
+      }
+
+      renderEventHeader(eventData);
+      renderGallery(eventData.photos || []);
+    }
+
+    function renderEventHeader(eventData) {
+      const header = document.getElementById('eventHeader');
+      header.innerHTML = `
+        <p class="eyebrow">${eventData.eyebrow}</p>
+        <h1 class="section-heading">${eventData.heading}</h1>
+        <p class="section-intro" style="margin-left:auto;margin-right:auto;">${eventData.description}</p>
+        <span class="event-header__date">${eventData.date}</span>
+      `;
+    }
+
+    /**
+     * Builds one .gallery-item tile per photo. Each tile uses the same
+     * "placeholder text behind the image" trick as the rest of the site:
+     * the placeholder always renders, and the <img> covers it the moment
+     * it loads successfully (onload), or hides itself if the photo is
+     * missing (onerror) - so a missing photo never shows a broken icon.
+     */
+    function renderGallery(photos) {
+      currentPhotos = photos;
+
+      const grid = document.getElementById('galleryGrid');
+      grid.innerHTML = photos.map((photo, index) => `
+        <div class="gallery-item" data-index="${index}">
+          <span class="gallery-item__placeholder">Photo will go here</span>
+          <img class="gallery-item__img" src="${photo.src}" alt="${photo.caption}"
+               loading="lazy"
+               onload="this.previousElementSibling.style.display='none'"
+               onerror="this.style.display='none'">
+          <span class="gallery-item__caption">${photo.caption}</span>
+        </div>
+      `).join('');
+
+      // Clicking anywhere on a tile opens the lightbox at that photo.
+      grid.querySelectorAll('.gallery-item').forEach(tile => {
+        tile.addEventListener('click', () => {
+          openLightbox(Number(tile.dataset.index));
+        });
+      });
+
+      setupScrollReveal();
+    }
+
+    /**
+     * IntersectionObserver watches each gallery tile and adds the
+     * ".is-visible" class (which CSS fades/rises it into place - see
+     * the .gallery-item.is-visible rule above) the moment it scrolls
+     * into the viewport. This is what gives the gallery its polished,
+     * "photos gently appearing as you scroll" feel instead of just
+     * dumping every photo on screen at once.
+     */
+    function setupScrollReveal() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target); // only needs to animate in once
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll('.gallery-item').forEach(tile => observer.observe(tile));
+    }
+
+    /* -----------------------------------------------------------------
+       LIGHTBOX (full-screen photo viewer)
+       ----------------------------------------------------------------- */
+    function openLightbox(index) {
+      currentIndex = index;
+      updateLightboxImage();
+
+      const lightbox = document.getElementById('lightbox');
+      lightbox.classList.add('is-open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden'; // stop background scrolling
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      lightbox.classList.remove('is-open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = ''; // restore normal scrolling
+    }
+
+    function showNextPhoto() {
+      currentIndex = (currentIndex + 1) % currentPhotos.length;
+      updateLightboxImage();
+    }
+
+    function showPrevPhoto() {
+      currentIndex = (currentIndex - 1 + currentPhotos.length) % currentPhotos.length;
+      updateLightboxImage();
+    }
+
+    function updateLightboxImage() {
+      const photo = currentPhotos[currentIndex];
+      if (!photo) return;
+
+      document.getElementById('lightboxImg').src = photo.src;
+      document.getElementById('lightboxImg').alt = photo.caption;
+      document.getElementById('lightboxCaption').textContent = photo.caption;
+      document.getElementById('lightboxCounter').textContent =
+        `${currentIndex + 1} / ${currentPhotos.length}`;
+    }
+
+    function setupLightboxControls() {
+      document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+      document.getElementById('lightboxNext').addEventListener('click', showNextPhoto);
+      document.getElementById('lightboxPrev').addEventListener('click', showPrevPhoto);
+
+      // Clicking the dark backdrop (but not the photo itself) also closes it.
+      document.getElementById('lightbox').addEventListener('click', (event) => {
+        if (event.target.id === 'lightbox') closeLightbox();
+      });
+
+      // Keyboard support: Escape closes, arrow keys navigate - but only
+      // while the lightbox is actually open, so we don't hijack arrow
+      // keys/Escape elsewhere on the page.
+      document.addEventListener('keydown', (event) => {
+        const isOpen = document.getElementById('lightbox').classList.contains('is-open');
+        if (!isOpen) return;
+
+        if (event.key === 'Escape') closeLightbox();
+        if (event.key === 'ArrowRight') showNextPhoto();
+        if (event.key === 'ArrowLeft') showPrevPhoto();
+      });
+    }
+  </script>
+</body>
+</html>
