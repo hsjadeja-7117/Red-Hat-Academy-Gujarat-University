@@ -242,7 +242,7 @@ button {
 /* --- Size/shape variants --- */
 .media-frame--nav-logo {
   width: 150px;
-  height: 45px;
+  height: 50px;
   border-radius: var(--radius-sm);
 }
 
