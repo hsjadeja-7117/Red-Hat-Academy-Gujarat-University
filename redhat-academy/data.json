@@ -54,19 +54,19 @@
       "name": "Harshvardhansinh S Jadeja",
       "role": "Core Team Member - Website Management",
       "photo": "assets/team/member1.jpeg",
-      "description": "Builds & Maintains the official Program Website."
+      "description": "Builds & Maintains the official Program Website and Leading event management."
     },
     {
-      "name": "Student Name 2",
-      "role": "Core Team Member - Content",
-      "photo": "assets/team/member2.jpg",
-      "description": "Maintains study resources and helps members track progress through the curriculum."
+      "name": "Shiv Jani",
+      "role": "Core Team Member - Social Media & Content",
+      "photo": "assets/team/shiv_image.jpg.jpeg",
+      "description": "Maintains social media and helps in content creation."
     },
     {
-      "name": "Student Name 3",
-      "role": "Core Team Member - Outreach",
+      "name": "Achyut Hadavani",
+      "role": "Core Team Member - Event Management",
       "photo": "assets/team/member3.jpg",
-      "description": "Handles social media, announcements, and outreach to new students."
+      "description": "Leading event management."
     },
     {
       "name": "Student Name 4",
@@ -74,17 +74,5 @@
       "photo": "assets/team/member4.jpg",
       "description": "Sets up and troubleshoots the hands-on lab environments used in sessions."
     },
-    {
-      "name": "Student Name 5",
-      "role": "Core Team Member - Design",
-      "photo": "assets/team/member5.jpg",
-      "description": "Looks after this website and the chapter's visual materials."
-    },
-    {
-      "name": "Your Name",
-      "role": "Core Team Member",
-      "photo": "assets/team/member6.jpg",
-      "description": "Replace this card with your own name, role, and a short description."
-    }
   ]
 }
