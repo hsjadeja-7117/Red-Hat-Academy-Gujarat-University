@@ -1,5 +1,5 @@
 {
-  "_readme": "This file ONLY holds the Leadership & Team page cards now - the photo, name, role, and description for the HOD, Faculty, Campus Ambassador, and each Core Team member. Everything else on the site (home page text, FAQ questions/answers, contact emails) is written directly inside its own HTML file, so open index.html / faq.html / contact.html to edit that content. Keeping just the team roster here means adding or swapping out a team member each year is a single, simple edit, without needing to touch any HTML.",
+  "_readme": "This file holds the Leadership & Team page cards (photo, name, role, description for the HOD, Faculty, Campus Ambassador, and each Core Team member) AND the Inauguration event page's heading/description/photo list. Everything else on the site (home page text, FAQ questions/answers, contact emails) is written directly inside its own HTML file, so open index.html / faq.html / contact.html to edit that content.",
 
   "hod": {
     "name": "Dr. Paavan Pandit",
@@ -20,6 +20,24 @@
     "role": "Red Hat Academy Campus Ambassador",
     "photo": "assets/team/ambassador.png",
     "description": "Brought Red Hat Academy to our campus and formed the student core team. Serves as the main link between our chapter, the faculty coordinator, and the wider Red Hat Academy community."
+  },
+
+  "event": {
+    "eyebrow": "our story begins",
+    "heading": "Inauguration Ceremony",
+    "date": "Add your event date here",
+    "description": "Photos from the day our Red Hat Academy chapter was officially inaugurated on campus.",
+    "photos": [
+      { "src": "assets/event/photo-01.jpg", "caption": "Lighting the ceremonial lamp" },
+      { "src": "assets/event/photo-02.jpg", "caption": "Chief guest address" },
+      { "src": "assets/event/photo-03.jpg", "caption": "Campus Ambassador's welcome speech" },
+      { "src": "assets/event/photo-04.jpg", "caption": "Faculty coordinator felicitation" },
+      { "src": "assets/event/photo-05.jpg", "caption": "Ribbon cutting ceremony" },
+      { "src": "assets/event/photo-06.jpg", "caption": "Certificate distribution" },
+      { "src": "assets/event/photo-07.jpg", "caption": "Group photo with the core team" },
+      { "src": "assets/event/photo-08.jpg", "caption": "Audience during the ceremony" },
+      { "src": "assets/event/photo-09.jpg", "caption": "Cake cutting celebration" }
+    ]
   },
 
   "coreTeam": [
